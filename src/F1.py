@@ -1,4 +1,6 @@
 import model
+
+
 def add_course():#新增新的課程
     new_course=[]
     new_course.append(input("課程代碼:"))
