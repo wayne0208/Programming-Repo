@@ -1,22 +1,39 @@
-"""students[15]#[id,name,dept,credit_limit,enrolled(課表))]
-students[0]=[1150101,"王曉明","資工一",25,3] 
-students[1]=[1150102,"赤羽葉","資工一",25,2]
-students[2]=[1150103,"沈佳宜","資工一",25,4]
-students[3]=[1150104,"毛利藍","資工一",25,5]
-students[4]=[1150105,"森德綸","資工一",25,6]
-students[5]=[1150106,"伏黑惠","資工一",25,7]
-students[6]=[1150107,"洪菁晴","資工一",25,8]
-students[7]=[1150108,"月島螢","資工一",25,9]
-students[8]=[1150109,"柯景騰","資工一",25,2]
-students[9]=[1150110,"徐太宇","資工一",25,3]
-students[10]=[1140120,"夜神月","資工二",25,4]
-students[11]=[1140131,"林真心","資工二",25,5]
-students[12]=[1140146,"五條悟","資工二",25,6]
-students[13]=[1130116,"八千代","資工三",25,7]
-students[14]=[1130124,"芙莉蓮","資工三",25,8]"""
+'''
+#students[15]#[id,name,dept,credit_limit,enrolled(課表))] #課表可能需要改成已選課程的代碼
+students[0] = [1150101,"王曉明","資工一",25,3]
+students[1] = [1150102,"赤羽葉","資工一",25,2]
+students[2] = [1150103,"沈佳宜","資工一",25,4]
+students[3] = [1150104,"毛利藍","資工一",25,5]
+students[4] = [1150105,"森德綸","資工一",25,6]
+students[5] = [1150106,"伏黑惠","資工一",25,7]
+students[6] = [1150107,"洪菁晴","資工一",25,8]
+students[7] = [1150108,"月島螢","資工一",25,9]
+students[8] = [1150109,"柯景騰","資工一",25,2]
+students[9] = [1150110,"徐太宇","資工一",25,3]
+students[10] = [1140120,"夜神月","資工二",25,4]
+students[11] = [1140131,"林真心","資工二",25,5]
+students[12] = [1140146,"五條悟","資工二",25,6]
+students[13] = [1130116,"八千代","資工三",25,7]
+students[14] = [1130124,"芙莉蓮","資工三",25,8]
+'''
+students = [[1150101,"王曉明","資工一",25,3],
+            [1150102,"赤羽葉","資工一",25,2],
+            [1150103,"沈佳宜","資工一",25,4],
+            [1150104,"毛利藍","資工一",25,5],
+            [1150105,"森德綸","資工一",25,6],
+            [1150106,"伏黑惠","資工一",25,7],
+            [1150107,"洪菁晴","資工一",25,8],
+            [1150108,"月島螢","資工一",25,9],
+            [1150109,"柯景騰","資工一",25,2],
+            [1150110,"徐太宇","資工一",25,3],
+            [1140120,"夜神月","資工二",25,4],
+            [1140131,"林真心","資工二",25,5],
+            [1140146,"五條悟","資工二",25,6],
+            [1130116,"八千代","資工三",25,7],
+            [1130124,"芙莉蓮","資工三",25,8]]
 
 #[code代碼,name名稱,credits學分,type必選修,teacher教師,capacity人數限制,current目前人數,room教室,[slots時段]]
-course=[
+course = [
 ["CS001","程式設計",3,"必修","郭大爺",45,40,"06206",["2-9","2-a"]],
 ["CS002","日文",2,"選修","鄭要學",30,0,"03303",["2-7","2-8"]],
 ["CS003","國文",2,"必修","陳詩雅",40,30,"06306",["4-3","4-4"]],
@@ -39,33 +56,33 @@ course=[
 ["CS020","親密關係",2,"選修","楊妹咩",30,25,"03303",["4-a","4-b"]]]
 
 #教室[id,capacity]
-classroom=[
+classroom = [
 ["06206",45],
 ["03303",30],
-["06302",40], 
-["02303",40], 
+["06302",40],
+["02303",40],
 ["00101",50]]
 """
-#前[0-6]是星期1-7 後[0-11]是節數1-9 a-c 
+#前[0-6]是星期1-7 後[0-11]是節數1-9 a-c
 curriculum = [["" for _ in range(12)] for _ in range(7)]
 
 #只有必修21學分
-curriculum3[0][2]=curriculum3[0][3]=curriculum3[4][2]="CS008"
-curriculum3[0][4]=curriculum3[0][5]="CS004"
-curriculum3[0][6]=curriculum3[1][0]=curriculum3[1][1]="CS007"
-curriculum3[1][2]=curriculum3[4][0]=curriculum3[4][1]="CS006"
-curriculum3[1][7]=curriculum3[1][8]=curriculum3[1][9]="CS001"
-curriculum3[2][1]=curriculum3[2][2]=curriculum3[2][3]="CS005"
-curriculum3[3][2]=curriculum3[3][3]="CS003"
-curriculum3[4][9]=curriculum3[4][10]="CS013"
+curriculum3[0][2] = curriculum3[0][3] = curriculum3[4][2] = "CS008"
+curriculum3[0][4] = curriculum3[0][5] = "CS004"
+curriculum3[0][6] = curriculum3[1][0] = curriculum3[1][1] = "CS007"
+curriculum3[1][2] = curriculum3[4][0] = curriculum3[4][1] = "CS006"
+curriculum3[1][7] = curriculum3[1][8] = curriculum3[1][9] = "CS001"
+curriculum3[2][1] = curriculum3[2][2] = curriculum3[2][3] = "CS005"
+curriculum3[3][2] = curriculum3[3][3] = "CS003"
+curriculum3[4][9] = curriculum3[4][10] = "CS013"
 #全必修+1選修23學分
-curriculum4[0][2]=curriculum4[0][3]=curriculum4[4][2]="CS008"
-curriculum4[0][4]=curriculum4[0][5]="CS004"
-curriculum4[0][6]=curriculum4[1][0]=curriculum4[1][1]="CS007"
-curriculum4[1][2]=curriculum4[4][0]=curriculum4[4][1]="CS006"
-curriculum4[1][7]=curriculum4[1][8]=curriculum4[1][9]="CS001"
-curriculum4[2][1]=curriculum4[2][2]=curriculum4[2][3]="CS005"
-curriculum4[3][2]=curriculum4[3][3]="CS003"
-curriculum4[3][7]=curriculum4[3][6]="CS014"
-curriculum4[4][5]=curriculum4[4][6]="CS018"
+curriculum4[0][2] = curriculum4[0][3] = curriculum4[4][2] = "CS008"
+curriculum4[0][4] = curriculum4[0][5] = "CS004"
+curriculum4[0][6] = curriculum4[1][0] = curriculum4[1][1] = "CS007"
+curriculum4[1][2] = curriculum4[4][0] = curriculum4[4][1] = "CS006"
+curriculum4[1][7] = curriculum4[1][8] = curriculum4[1][9] = "CS001"
+curriculum4[2][1] = curriculum4[2][2] = curriculum4[2][3] = "CS005"
+curriculum4[3][2] = curriculum4[3][3] = "CS003"
+curriculum4[3][7] = curriculum4[3][6] = "CS014"
+curriculum4[4][5] = curriculum4[4][6] = "CS018"
 """

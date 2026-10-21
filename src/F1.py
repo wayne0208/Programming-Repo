@@ -16,7 +16,7 @@ def add_course():#新增新的課程
 
     check_new_course(new_course,t)#檢查是否衝堂
 
-def add_student():
+def add_student(): #新增學生
     new_student = []
     new_student_course = [] #學生已選課程
     new_student.append(int(input("學號:")))
@@ -33,6 +33,7 @@ def add_student():
     new_student.append(new_student_course)
     new_student.append(int(input("學分上限:")))
 
+    check_new_student_id(new_student[0], new_student) #檢查學號是否重複
 
 def check_new_course(new_course,t):#檢查是否衝堂
     s = 0#s = 0的話表示沒有錯誤
@@ -68,6 +69,13 @@ def check_new_course(new_course,t):#檢查是否衝堂
     if s == 0:
         print("回報成功")
         model.course.append(new_course)#新增課程
+
+def check_new_student_id(student_id, new_student): #檢查學號是否重複
+    for i in range(len(model.students)):
+        if student_id == model.students[i][0]:
+            print('報錯拒絕,提示:學號重複')
+        else:
+            model.students.append(new_student) #新增學生
 
 def delete_course():#刪除課程
     code = input("請輸入要刪除的課程代碼:")
