@@ -16,6 +16,24 @@ def add_course():#新增新的課程
 
     check_new_course(new_course,t)#檢查是否衝堂
 
+def add_student():
+    new_student = []
+    new_student_course = [] #學生已選課程
+    new_student.append(int(input("學號:")))
+    new_student.append(input("姓名:"))
+    new_student.append(input("系級:"))
+
+    while True:
+        temp = input("已選課程(課程代碼),結束請輸入(N/n):")
+        if temp == 'N' or temp == 'n':
+            break
+        else:
+            new_student_course.append(temp)
+
+    new_student.append(new_student_course)
+    new_student.append(int(input("學分上限:")))
+
+
 def check_new_course(new_course,t):#檢查是否衝堂
     s = 0#s = 0的話表示沒有錯誤
     for i in range(len(model.course)):#取預設課程總共數量
