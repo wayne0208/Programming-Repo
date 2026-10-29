@@ -93,5 +93,45 @@ def delete_course():#刪除課程
                 break
     if j == 0:
         print("錯誤,提示:課程代碼不存在")
+def search_student_date():#查詢學生資料
+    id=int(input("請輸入學生學號: "))
+    ii=0#如果沒該學生測試
+    for i in range(len(model.students)):
+        if id==model.students[i][0]:
+            ii=1
+            print(f"學生學號:{model.students[i][0]}\n學生名字:{model.students[i][1]}\n科系:{model.students[i][2]}\n學分上限:{model.students[i][3]}")
+            a=model.students[i][4]#取名字
+            user_a=getattr(model,a)#可以直接取得model.curriculum
+            print("----個人課表----")
+            print(f"{'節數':<5}{'一':<13}{'二':<13}{'三':<13}{'四':<13}{'五':<13}{'六':<13}{'日':<13}")
+            for i in range(12):
+                if i<9:
+                    m=str(i+1)
+                elif i==9:
+                    m="a" 
+                elif i==10:
+                    m="b" 
+                else:
+                    m="c"
+                row=f"{'第'+m+'節':<5}"
+                for j in range(7):
+                    code=user_a[j][i]
+                    if code!="":
+                        pcode=id_course(code)
+                    else :
+                        pcode=""
+                    chinese_char=sum(1 for char in pcode if  '\u4e00' <= char <= '\u9fff')
+                    char_=13-chinese_char
+                    row +=f"{pcode:<{char_}}"
+                print(row)
+            print("-------------")
+    if ii==0:
+        print("沒這名學生")
+def id_course(code):
+    for i in range(len(model.course)):
+        if code == model.course[i][0]:
+            pcode=model.course[i][1]
+    return pcode
 #add_course()#測試
 #delete_course()
+search_student_date()
