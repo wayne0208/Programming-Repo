@@ -41,6 +41,9 @@ def add_student(): #新增學生
                         period = 11
                     elif period == 'c':
                         period = 12
+                    else:
+                        print("報錯拒絕,提示:沒有這節")
+                        continue
                 finally:
                     new_student_course[week][period - 1] = course
 
