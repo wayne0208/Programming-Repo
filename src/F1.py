@@ -18,18 +18,31 @@ def add_course():#新增新的課程
 
 def add_student(): #新增學生
     new_student = []
-    new_student_course = [] #學生已選課程
+    new_student_course = [[None] * 12 for _ in range(7)] #學生已選課程
     new_student.append(int(input("學號:")))
     new_student.append(input("姓名:"))
     new_student.append(input("系級:"))
     new_student.append(int(input("學分上限:")))
 
-    while True:
-        temp = input("已選課程(課程代碼),結束請輸入(N/n):")
-        if temp == 'N' or temp == 'n':
-            break
-        else:
-            new_student_course.append(temp)
+    for week in range(7):
+        week_chinese = ["一", "二", "三", "四", "五", "六", "日"] #數字轉中文
+        print(f"星期{week_chinese[week]}:")
+        while True:
+            course, period = input("已選課程(課程代碼 第幾節), 結束(N/n N/n):").split()
+            if course == period == 'N' or period == period == 'n':
+                break
+            else:
+                try:
+                    period = int(period)
+                except ValueError:
+                    if period == 'a':
+                        period = 10
+                    elif period == 'b':
+                        period = 11
+                    elif period == 'c':
+                        period = 12
+                finally:
+                    new_student_course[week][period - 1] = course
 
     new_student.append(new_student_course)
 
