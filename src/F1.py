@@ -41,7 +41,7 @@ def add_student(): #新增學生
                         period = 11
                     elif period == 'c':
                         period = 12
-                    else:
+                    else: #超出節數,重新輸入
                         print("報錯拒絕,提示:沒有這節")
                         continue
                 finally:
