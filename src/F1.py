@@ -18,20 +18,33 @@ def add_course():#新增新的課程
 
 def add_student(): #新增學生
     new_student = []
-    new_student_course = [] #學生已選課程
+    new_student_course = [[None] * 12 for _ in range(7)] #學生已選課程
     new_student.append(int(input("學號:")))
     new_student.append(input("姓名:"))
     new_student.append(input("系級:"))
+    new_student.append(int(input("學分上限:")))
 
-    while True:
-        temp = input("已選課程(課程代碼),結束請輸入(N/n):")
-        if temp == 'N' or temp == 'n':
-            break
-        else:
-            new_student_course.append(temp)
+    for week in range(7):
+        week_chinese = ["一", "二", "三", "四", "五", "六", "日"] #數字轉中文
+        print(f"星期{week_chinese[week]}:")
+        while True:
+            course, period = input("已選課程(課程代碼 第幾節), 結束(N/n N/n):").split()
+            if course == period == 'N' or period == period == 'n':
+                break
+            else:
+                try:
+                    period = int(period)
+                except ValueError:
+                    if period == 'a':
+                        period = 10
+                    elif period == 'b':
+                        period = 11
+                    elif period == 'c':
+                        period = 12
+                finally:
+                    new_student_course[week][period - 1] = course
 
     new_student.append(new_student_course)
-    new_student.append(int(input("學分上限:")))
 
     check_new_student_id(new_student[0], new_student) #檢查學號是否重複
 
@@ -93,40 +106,42 @@ def delete_course():#刪除課程
                 break
     if j == 0:
         print("錯誤,提示:課程代碼不存在")
+
 def search_student_date():#查詢學生資料
-    id=int(input("請輸入學生學號: "))
-    ii=0#如果沒該學生測試
+    id = int(input("請輸入學生學號: "))
+    ii = 0#如果沒該學生測試
     for i in range(len(model.students)):
-        if id==model.students[i][0]:
-            ii=1
+        if id == model.students[i][0]:
+            ii = 1
             print(f"學生學號:{model.students[i][0]}\n學生名字:{model.students[i][1]}\n科系:{model.students[i][2]}\n學分上限:{model.students[i][3]}")
-            a=model.students[i][4]#取名字
-            user_a=getattr(model,a)#可以直接取得model.curriculum
+            a = model.students[i][4]#取名字
+            user_a = getattr(model,a)#可以直接取得model.curriculum
             print("----個人課表----")
             print(f"{'節數':<5}{'一':<13}{'二':<13}{'三':<13}{'四':<13}{'五':<13}{'六':<13}{'日':<13}")
             for i in range(12):
-                if i<9:
-                    m=str(i+1)
-                elif i==9:
-                    m="a" 
-                elif i==10:
-                    m="b" 
+                if i < 9:
+                    m = str(i + 1)
+                elif i == 9:
+                    m = "a"
+                elif i == 10:
+                    m = "b"
                 else:
-                    m="c"
-                row=f"{'第'+m+'節':<5}"
+                    m = "c"
+                row = f"{'第'+ m +'節':<5}"
                 for j in range(7):
-                    code=user_a[j][i]
-                    if code!="":
-                        pcode=id_course(code)
-                    else :
-                        pcode=""
-                    chinese_char=sum(1 for char in pcode if  '\u4e00' <= char <= '\u9fff')
-                    char_=13-chinese_char
-                    row +=f"{pcode:<{char_}}"
+                    code = user_a[j][i]
+                    if code != "":
+                        pcode = id_course(code)
+                    else:
+                        pcode = ""
+                    chinese_char = sum(1 for char in pcode if  '\u4e00' <= char <= '\u9fff')
+                    char_ = 13 - chinese_char
+                    row += f"{pcode:<{char_}}"
                 print(row)
             print("-------------")
-    if ii==0:
+    if ii == 0:
         print("沒這名學生")
+
 def id_course(code):
     for i in range(len(model.course)):
         if code == model.course[i][0]:
